@@ -5,12 +5,22 @@
 #include <string.h>
 #include "heaps.h"
 #include "huffman.h"
+#include "tiempo.h"
 
 int main()
 {
+//Variables para medición de tiempos
+	double utime0, stime0, wtime0,utime1, stime1, wtime1; 
+
   char nombreArchivo[100];
     printf("Ingrese el nombre del archivo de entrada:\n");
-    scanf("%s",&nombreArchivo);
+    scanf("%s",nombreArchivo);
+
+//**********************************************************************************
+  //INICIAR EL CONTEO DEL TIEMPO PARA LAS EVALUACIONES DE RENDIMIENTO	
+	uswtime(&utime0, &stime0, &wtime0);
+
+
   FILE *archivo = fopen(nombreArchivo, "rb");
   //Busca la ultima posicion del archivo partiendo desde el inicio
   fseek(archivo, 0, SEEK_END);
@@ -118,4 +128,24 @@ int main()
   }
 
   fclose(frepeticiones);
+
+  //EVALUAR LOS TIEMPOS DE EJECUCIÓN 
+	uswtime(&utime1, &stime1, &wtime1);
+
+	//Cálculo del tiempo de ejecución del programa
+	printf("\n");
+	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
+	printf("user (Tiempo de procesamiento en CPU) %.10f s\n",  utime1 - utime0);
+	printf("sys (Tiempo en acciónes de E/S)  %.10f s\n",  stime1 - stime0);
+	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
+	printf("\n");
+	
+	//Mostrar los tiempos en formato exponecial
+	printf("\n");
+	printf("real (Tiempo total)  %.10e s\n",  wtime1 - wtime0);
+	printf("user (Tiempo de procesamiento en CPU) %.10e s\n",  utime1 - utime0);
+	printf("sys (Tiempo en acciónes de E/S)  %.10e s\n",  stime1 - stime0);
+	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
+	printf("\n");
+
 }

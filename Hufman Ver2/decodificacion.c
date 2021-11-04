@@ -3,9 +3,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "tiempo.h"
 #define BYTE 7
 int main()
 {
+
+    //Variables para medición de tiempos
+	double utime0, stime0, wtime0,utime1, stime1, wtime1; 
+
+    char nombreArchivo[100];
+    printf("Ingrese el nombre del archivo de salida:\n");
+    scanf("%s", nombreArchivo);
+
+    //**********************************************************************************
+  //INICIAR EL CONTEO DEL TIEMPO PARA LAS EVALUACIONES DE RENDIMIENTO	
+	uswtime(&utime0, &stime0, &wtime0);
+
     //No. nodos en el arbol, tamaño del archivo codificado
    int elementos, tamArchivo;
     int *byte;
@@ -66,9 +79,7 @@ int main()
 
     //fread(bytes, 1, tamano, archivo);
 
-    char nombreArchivo[100];
-    printf("Ingrese el nombre del archivo de salida:\n");
-    scanf("%s", &nombreArchivo);
+   
     FILE *original = fopen(nombreArchivo, "wb");
     struct nodoHeap *aux = raiz;
     fseek(archivo, 0, SEEK_SET);
@@ -94,5 +105,26 @@ int main()
     }
 
     fclose(archivo);
+
+
+     //EVALUAR LOS TIEMPOS DE EJECUCIÓN 
+	uswtime(&utime1, &stime1, &wtime1);
+
+	//Cálculo del tiempo de ejecución del programa
+	printf("\n");
+	printf("real (Tiempo total)  %.10f s\n",  wtime1 - wtime0);
+	printf("user (Tiempo de procesamiento en CPU) %.10f s\n",  utime1 - utime0);
+	printf("sys (Tiempo en acciónes de E/S)  %.10f s\n",  stime1 - stime0);
+	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
+	printf("\n");
+	
+	//Mostrar los tiempos en formato exponecial
+	printf("\n");
+	printf("real (Tiempo total)  %.10e s\n",  wtime1 - wtime0);
+	printf("user (Tiempo de procesamiento en CPU) %.10e s\n",  utime1 - utime0);
+	printf("sys (Tiempo en acciónes de E/S)  %.10e s\n",  stime1 - stime0);
+	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
+	printf("\n");
+
     return 0;
 }
