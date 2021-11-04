@@ -1,120 +1,140 @@
 
-real (Tiempo total)  0.0052559376 s
+real (Tiempo total)  0.0053620338 s
 user (Tiempo de procesamiento en CPU) 0.0051650000 s
 sys (Tiempo en acciónes de E/S)  0.0000000000 s
-CPU/Wall   98.2698124745 % 
+CPU/Wall   96.3253897732 % 
 
 
-real (Tiempo total)  5.2559375763e-03 s
+real (Tiempo total)  5.3620338440e-03 s
 user (Tiempo de procesamiento en CPU) 5.1650000000e-03 s
 sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
-CPU/Wall   98.2698124745 % 
+CPU/Wall   96.3253897732 % 
 
+Tamño del archivo original: 24321 bytes
+Tamaño del archivo codificado (.dat): 171397 bytes
 
-real (Tiempo total)  0.0017580986 s
-user (Tiempo de procesamiento en CPU) 0.0017610000 s
+real (Tiempo total)  0.0017440319 s
+user (Tiempo de procesamiento en CPU) 0.0017110000 s
 sys (Tiempo en acciónes de E/S)  0.0000000000 s
-CPU/Wall   100.1650304312 % 
+CPU/Wall   98.1060033356 % 
 
 
-real (Tiempo total)  1.7580986023e-03 s
-user (Tiempo de procesamiento en CPU) 1.7610000000e-03 s
+real (Tiempo total)  1.7440319061e-03 s
+user (Tiempo de procesamiento en CPU) 1.7110000000e-03 s
 sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
-CPU/Wall   100.1650304312 % 
+CPU/Wall   98.1060033356 % 
+
+Tamño del archivo original: 6536 bytes
+Tamaño del archivo codificado (.dat): 52004 bytes
+
+real (Tiempo total)  0.0584070683 s
+user (Tiempo de procesamiento en CPU) 0.0528050000 s
+sys (Tiempo en acciónes de E/S)  0.0031650000 s
+CPU/Wall   95.8274429355 % 
 
 
-real (Tiempo total)  0.0572979450 s
-user (Tiempo de procesamiento en CPU) 0.0526430000 s
-sys (Tiempo en acciónes de E/S)  0.0041210000 s
-CPU/Wall   99.0681253536 % 
+real (Tiempo total)  5.8407068253e-02 s
+user (Tiempo de procesamiento en CPU) 5.2805000000e-02 s
+sys (Tiempo en acciónes de E/S)  3.1650000000e-03 s
+CPU/Wall   95.8274429355 % 
 
+Tamño del archivo original: 273734 bytes
+Tamaño del archivo codificado (.dat): 2189872 bytes
 
-real (Tiempo total)  5.7297945023e-02 s
-user (Tiempo de procesamiento en CPU) 5.2643000000e-02 s
-sys (Tiempo en acciónes de E/S)  4.1210000000e-03 s
-CPU/Wall   99.0681253536 % 
-
-
-real (Tiempo total)  0.0524101257 s
-user (Tiempo de procesamiento en CPU) 0.0518000000 s
+real (Tiempo total)  0.0580160618 s
+user (Tiempo de procesamiento en CPU) 0.0561350000 s
 sys (Tiempo en acciónes de E/S)  0.0000000000 s
-CPU/Wall   98.8358628721 % 
+CPU/Wall   96.7576879143 % 
 
 
-real (Tiempo total)  5.2410125732e-02 s
-user (Tiempo de procesamiento en CPU) 5.1800000000e-02 s
+real (Tiempo total)  5.8016061783e-02 s
+user (Tiempo de procesamiento en CPU) 5.6135000000e-02 s
 sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
-CPU/Wall   98.8358628721 % 
+CPU/Wall   96.7576879143 % 
+
+Tamño del archivo original: 265159 bytes
+Tamaño del archivo codificado (.dat): 2121272 bytes
+
+real (Tiempo total)  0.0218720436 s
+user (Tiempo de procesamiento en CPU) 0.0175220000 s
+sys (Tiempo en acciónes de E/S)  0.0036160000 s
+CPU/Wall   96.6439184983 % 
 
 
-real (Tiempo total)  0.0216791630 s
-user (Tiempo de procesamiento en CPU) 0.0214880000 s
+real (Tiempo total)  2.1872043610e-02 s
+user (Tiempo de procesamiento en CPU) 1.7522000000e-02 s
+sys (Tiempo en acciónes de E/S)  3.6160000000e-03 s
+CPU/Wall   96.6439184983 % 
+
+Tamño del archivo original: 97658 bytes
+Tamaño del archivo codificado (.dat): 773557 bytes
+
+real (Tiempo total)  1.0322709084 s
+user (Tiempo de procesamiento en CPU) 0.9527220000 s
+sys (Tiempo en acciónes de E/S)  0.0414430000 s
+CPU/Wall   96.3085360590 % 
+
+
+real (Tiempo total)  1.0322709084e+00 s
+user (Tiempo de procesamiento en CPU) 9.5272200000e-01 s
+sys (Tiempo en acciónes de E/S)  4.1443000000e-02 s
+CPU/Wall   96.3085360590 % 
+
+Tamño del archivo original: 5012446 bytes
+Tamaño del archivo codificado (.dat): 40078352 bytes
+
+real (Tiempo total)  0.9006290436 s
+user (Tiempo de procesamiento en CPU) 0.8005970000 s
+sys (Tiempo en acciónes de E/S)  0.0351820000 s
+CPU/Wall   92.7994723198 % 
+
+
+real (Tiempo total)  9.0062904358e-01 s
+user (Tiempo de procesamiento en CPU) 8.0059700000e-01 s
+sys (Tiempo en acciónes de E/S)  3.5182000000e-02 s
+CPU/Wall   92.7994723198 % 
+
+Tamño del archivo original: 4046906 bytes
+Tamaño del archivo codificado (.dat): 32375248 bytes
+
+real (Tiempo total)  0.1322078705 s
+user (Tiempo de procesamiento en CPU) 0.1292610000 s
 sys (Tiempo en acciónes de E/S)  0.0000000000 s
-CPU/Wall   99.1182178975 % 
+CPU/Wall   97.7710324865 % 
 
 
-real (Tiempo total)  2.1679162979e-02 s
-user (Tiempo de procesamiento en CPU) 2.1488000000e-02 s
+real (Tiempo total)  1.3220787048e-01 s
+user (Tiempo de procesamiento en CPU) 1.2926100000e-01 s
 sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
-CPU/Wall   99.1182178975 % 
+CPU/Wall   97.7710324865 % 
 
+Tamño del archivo original: 621186 bytes
+Tamaño del archivo codificado (.dat): 4956446 bytes
 
-real (Tiempo total)  1.0258610249 s
-user (Tiempo de procesamiento en CPU) 0.9702070000 s
-sys (Tiempo en acciónes de E/S)  0.0434540000 s
-CPU/Wall   98.8107526691 % 
-
-
-real (Tiempo total)  1.0258610249e+00 s
-user (Tiempo de procesamiento en CPU) 9.7020700000e-01 s
-sys (Tiempo en acciónes de E/S)  4.3454000000e-02 s
-CPU/Wall   98.8107526691 % 
-
-
-real (Tiempo total)  0.8301160336 s
-user (Tiempo de procesamiento en CPU) 0.7813650000 s
-sys (Tiempo en acciónes de E/S)  0.0394930000 s
-CPU/Wall   98.8847301847 % 
-
-
-real (Tiempo total)  8.3011603355e-01 s
-user (Tiempo de procesamiento en CPU) 7.8136500000e-01 s
-sys (Tiempo en acciónes de E/S)  3.9493000000e-02 s
-CPU/Wall   98.8847301847 % 
-
-
-real (Tiempo total)  0.1310231686 s
-user (Tiempo de procesamiento en CPU) 0.1256620000 s
-sys (Tiempo en acciónes de E/S)  0.0039540000 s
-CPU/Wall   98.9260154679 % 
-
-
-real (Tiempo total)  1.3102316856e-01 s
-user (Tiempo de procesamiento en CPU) 1.2566200000e-01 s
-sys (Tiempo en acciónes de E/S)  3.9540000000e-03 s
-CPU/Wall   98.9260154679 % 
-
-
-real (Tiempo total)  0.0638530254 s
-user (Tiempo de procesamiento en CPU) 0.0631570000 s
+real (Tiempo total)  0.0645029545 s
+user (Tiempo de procesamiento en CPU) 0.0638750000 s
 sys (Tiempo en acciónes de E/S)  0.0000000000 s
-CPU/Wall   98.9099569963 % 
+CPU/Wall   99.0264717515 % 
 
 
-real (Tiempo total)  6.3853025436e-02 s
-user (Tiempo de procesamiento en CPU) 6.3157000000e-02 s
+real (Tiempo total)  6.4502954483e-02 s
+user (Tiempo de procesamiento en CPU) 6.3875000000e-02 s
 sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
-CPU/Wall   98.9099569963 % 
+CPU/Wall   99.0264717515 % 
+
+Tamño del archivo original: 299025 bytes
+Tamaño del archivo codificado (.dat): 2392200 bytes
+
+real (Tiempo total)  0.0152111053 s
+user (Tiempo de procesamiento en CPU) 0.0098330000 s
+sys (Tiempo en acciónes de E/S)  0.0052040000 s
+CPU/Wall   98.8554063448 % 
 
 
-real (Tiempo total)  0.0165081024 s
-user (Tiempo de procesamiento en CPU) 0.0161680000 s
-sys (Tiempo en acciónes de E/S)  0.0000000000 s
-CPU/Wall   97.9397849105 % 
+real (Tiempo total)  1.5211105347e-02 s
+user (Tiempo de procesamiento en CPU) 9.8330000000e-03 s
+sys (Tiempo en acciónes de E/S)  5.2040000000e-03 s
+CPU/Wall   98.8554063448 % 
 
-
-real (Tiempo total)  1.6508102417e-02 s
-user (Tiempo de procesamiento en CPU) 1.6168000000e-02 s
-sys (Tiempo en acciónes de E/S)  0.0000000000e+00 s
-CPU/Wall   97.9397849105 % 
-
+Tamño del archivo original: 74139 bytes
+Tamaño del archivo codificado (.dat): 591243 bytes
