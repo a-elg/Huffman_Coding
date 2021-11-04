@@ -1,11 +1,28 @@
+/*****************************************************************
+(C)Noviembre 2021
+ 
+EQUIPO: Ponys Salvajes
+INTEGRANTES DEL EQUIPO: 
+    López Gracia Angel Emmanuel 
+    López Hernández Lissete 
+    Martínez Martínez Fernando 
+    Martínez Ortiz Fabiola Yahel	
+  VERSIÓN: 5.0
+DESCRIPCIÓN: Implementación de las funciones necesarias para crear la estructura de datos minHeap, con algunas operaciones basicas.
+
+CURSO: Análisis de algoritmos
+    COMPILACIÓN: "gcc [nombre_del_programa].c -o main” 
+    EJECUCIÓN: "./main n" (Linux y MAC OS)
+*****************************************************************/
 #include "heaps.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-// Create nodes
+/*Función que implementa la creacion de nodos para el arbol minHeap, recibe el caracter a almacenar y las veces que se repite en el archivo a codificar.*/
 struct nodoHeap *crearNodo(unsigned char dato, unsigned int frecuencia)
 {
   struct nodoHeap *nodo = (struct nodoHeap *)malloc(sizeof(struct nodoHeap));
+  //asignacion e inicializacion de valores del nodo
   nodo->dato = dato;
   nodo->frecuencia = frecuencia;
   nodo->izq = NULL;
@@ -13,11 +30,13 @@ struct nodoHeap *crearNodo(unsigned char dato, unsigned int frecuencia)
 
   return nodo;
 }
-
+/*Funcion EsHoja, se encarga de determinar si un nodo es hoja, para ello recibe el nodo a valorar.
+Retor*/
 int EsHoja(struct nodoHeap *raiz)
 {
+  //si el nodo no posee hijos, entonces es hoja
   if(!(raiz->izq) && !(raiz->der) != 0)
-  return 1;
+  return 1; 
   else
   return 0;
 }
@@ -125,29 +144,3 @@ struct Heap *generarArbol(unsigned char dato[], int frecuencia[], long long int 
 
   return arbol;
 }
-
-/*
-struct Heap *generarArbol(char dato[], int frecuencia[], int tam) {
-  struct Heap *Heap = crearArbol(tam);
-
-  for (int i = 0; i < tam; ++i)
-    Heap->nodo[i] = crearNodo(dato[i], frecuencia[i]);
-
-  Heap->tam = tam;
-  ordenarArbol(Heap);
-
-  return Heap;
-}
-// Create min heap
-struct Heap *crearArbol(unsigned int tamMax) {
-  struct Heap *arbol = (struct Heap *)malloc(sizeof(struct Heap));
-
-  arbol->tam = 0;
-
-  arbol->tamMax = tamMax;
-
-  arbol->nodo = (struct nodoHeap **)malloc(arbol->tamMax * sizeof(struct nodoHeap *));
-
-  return arbol;
-}
-*/
