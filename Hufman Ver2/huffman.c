@@ -22,7 +22,7 @@ struct nodoHeap *construirArbolHuffman(unsigned char dato[], int frecuencia[], i
   return extraerNodo(Heap);
 }
 
-void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* bits_huffman, int* tam_archivo)
+void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* bits_huffman, long long int* tam_archivo)
 {
   ///0 0 1 0 0 0 1 1
   int i;
@@ -58,7 +58,7 @@ void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* 
     // imprimirTabla(arr, arbol);
   }
 }
-void codificador(char nombre[], int tamano_archivo, Bits_Huffman* bits)
+void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits)
 {
     FILE *archivo = fopen(nombre, "rb");
     FILE *codi = fopen("binario.dat", "wb");

@@ -38,6 +38,6 @@ struct nodoHeap *extraerNodo(struct Heap *Heap);
 void insertarNodo(struct Heap *Heap, struct nodoHeap *nodo); //creo que es insertarArbol
 void ordenarArbol(struct Heap *Heap);
 int EsHoja(struct nodoHeap *raiz);
-struct Heap *generarArbol(unsigned char dato[], int frecuencia[], int tam);
+struct Heap *generarArbol(unsigned char dato[], int frecuencia[], long long int tam);
 
 #endif

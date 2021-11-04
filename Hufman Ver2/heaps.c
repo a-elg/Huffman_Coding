@@ -107,7 +107,7 @@ void ordenarArbol(struct Heap *Heap)
     ordenaDesc(Heap, i);
 }
 
-struct Heap *generarArbol(unsigned char dato[], int frecuencia[], int tam)
+struct Heap *generarArbol(unsigned char dato[], int frecuencia[], long long int tam)
 {
   struct Heap *arbol = (struct Heap *)malloc(sizeof(struct Heap));
 

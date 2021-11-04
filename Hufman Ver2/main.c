@@ -33,7 +33,7 @@ int main()
   //inicializa el array caracteres
   memset(frecuencia, 0, sizeof(int) * 256);
   //obtiene los caracteres del archivo hasta encontrar el final
-  for (int i = 0; i < tamano; i++)
+  for (long long i = 0; i < tamano; i++)
   {
     unsigned char aux = fgetc(archivo);
     frecuencia[aux]++;
@@ -103,7 +103,7 @@ int main()
   Bits_Huffman bits[256];
   for (int i = 0; i < 256; i++)
     bits[i].tam = 0;
-  int tam_archivo = 0;
+  long long int tam_archivo = 0;
   imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
   for (int i = 0; i < 256; i++)
   {
@@ -116,7 +116,7 @@ int main()
     }
   }
 
-  printf("%d\n", tam_archivo);
+  printf("%lld\n", tam_archivo);
   codificador(nombreArchivo, tam_archivo, bits);
   //se crea el archivo frepeticiones que guarda el numero de repeticiones, se necesita para la decodificación
   FILE *frepeticiones = fopen("frecuencias.txt", "wb");

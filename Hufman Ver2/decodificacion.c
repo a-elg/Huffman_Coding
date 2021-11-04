@@ -20,11 +20,12 @@ int main()
 	uswtime(&utime0, &stime0, &wtime0);
 
     //No. nodos en el arbol, tamaño del archivo codificado
-   int elementos, tamArchivo;
+   int elementos;
+    long long int tamArchivo;
     int *byte;
     FILE *frecuencias = fopen("frecuencias.txt", "rb");
     fscanf(frecuencias, "%d", &elementos);
-    fscanf(frecuencias, "%d", &tamArchivo);
+    fscanf(frecuencias, "%lld", &tamArchivo);
 
     unsigned char *caracteres = (unsigned char *)malloc(sizeof(unsigned char) * elementos); //Arreglo de caracteres repetidos
     int *recurrencias = (int *)malloc(sizeof(int) * elementos);                             //Arreglo con la cantidad de repeticiones
@@ -51,7 +52,7 @@ int main()
     Bits_Huffman bits[256];
     for (int i = 0; i < 256; i++)
         bits[i].tam = 0;
-     int tam_archivo = 0;
+     long long int tam_archivo = 0;
 
     imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
     for (int i = 0; i < 256; i++)
@@ -74,7 +75,7 @@ int main()
 
     unsigned char *bytes = (unsigned char *)malloc(tamano * sizeof(unsigned char));
 
-    for (int i = 0; i < tamano; i++)
+    for (long long int i = 0; i < tamano; i++)
         bytes[i] = 0;
 
     //fread(bytes, 1, tamano, archivo);

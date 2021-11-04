@@ -8,8 +8,8 @@
 #include "heaps.h"
 
 struct nodoHeap *construirArbolHuffman(unsigned char dato[], int frecuencia[], int tam);
-void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* bits_huffman,int* tam_archivo);
+void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* bits_huffman,long long int* tam_archivo);
 void codigoHuffman(unsigned char dato[], int frecuencia[], int tam);
 void imprimirTabla(int arr[], int n);
-void codificador(char nombre[], int tamano_archivo, Bits_Huffman* bits);
+void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits);
 #endif
