@@ -22,27 +22,25 @@ CURSO: Análisis de algoritmos
 struct nodoHeap *crearNodo(unsigned char dato, unsigned int frecuencia)
 {
   struct nodoHeap *nodo = (struct nodoHeap *)malloc(sizeof(struct nodoHeap));
-  //asignacion e inicializacion de valores del nodo
+  /*asignacion e inicializacion de valores del nodo*/
   nodo->dato = dato;
   nodo->frecuencia = frecuencia;
   nodo->izq = NULL;
   nodo->der = NULL;
-
   return nodo;
 }
-/*Funcion EsHoja, se encarga de determinar si un nodo es hoja, para ello recibe el nodo a valorar.
-Retor*/
+/*Funcion EsHoja, se encarga de determinar si un nodo es hoja, para ello recibe el nodo a valorar */
 int EsHoja(struct nodoHeap *raiz)
 {
   //si el nodo no posee hijos, entonces es hoja
   if(!(raiz->izq) && !(raiz->der) != 0)
-  return 1; 
+    return 1; 
   else
-  return 0;
+    return 0;
 }
 
 
-// Verifica si el arbol es unitario
+/*Funcion que verifica si el arbol es unitario*/
 int EsUnitario(struct Heap *Heap)
 {
   if(Heap->tam==1)
@@ -51,7 +49,7 @@ int EsUnitario(struct Heap *Heap)
   return 0;
 }
 
-// Function to swap
+/*Funcion para intercambiar nodos*/
 void swapNodo(struct nodoHeap **nodo1, struct nodoHeap **nodo2)
 {
   struct nodoHeap *temp = *nodo1;
@@ -59,7 +57,7 @@ void swapNodo(struct nodoHeap **nodo1, struct nodoHeap **nodo2)
   *nodo2 = temp;
 }
 
-//Ordena nodos descendentemente, en el arbol se visualiza como un ordenamiento desde arriba hacia abajo
+/*Funcion que ordena los nodos descendentemente, en el arbol se visualiza como un ordenamiento desde arriba hacia abajo*/
 void ordenaDesc(struct Heap *Heap, int posNodo)
 {
   int minimo = posNodo;
@@ -97,7 +95,7 @@ struct nodoHeap *extraerNodo(struct Heap *Heap)
   return temp;
 }
 
-/*Funcion insertar nodo*/
+/*Funcion para insertar nodo*/
 void insertarNodo(struct Heap *arbol, struct nodoHeap *nodo)
 {
   int i = arbol->tam;
@@ -110,12 +108,14 @@ void insertarNodo(struct Heap *arbol, struct nodoHeap *nodo)
     //Ahora se considerara el siguiente nodo padre
     i = (i - 1) / 2;
   }
+
   //INSERCION DEL NODO
   //Cuando el nodo que se desea insertar es mayor al siguiente nodo padre, se encontro su ubicacion, entonces se inserta
   arbol->nodo[i] = nodo;
   //ya que se inserto el nodo en el arbol, este crece de tamaño
   ++arbol->tam;
 }
+
 
 void ordenarArbol(struct Heap *Heap)
 {

@@ -1,18 +1,37 @@
+/*****************************************************************
+(C)Noviembre 2021
+ 
+EQUIPO: Ponys Salvajes
+INTEGRANTES DEL EQUIPO: 
+    López Gracia Angel Emmanuel 
+    López Hernández Lissete 
+    Martínez Martínez Fernando 
+    Martínez Ortiz Fabiola Yahel	
+  VERSIÓN: 5.0
+DESCRIPCIÓN: Implementación de las funciones necesarias para crear la estructura de datos minHeap, con algunas operaciones basicas.
+
+CURSO: Análisis de algoritmos
+    COMPILACIÓN: "gcc [nombre_del_programa].c -o main” 
+    EJECUCIÓN: "./main n" (Linux y MAC OS)
+*****************************************************************/
+
 #include "huffman.h"
 #include <stdio.h>
+
+/*Funcion para crear el arbol. Recibe como parametros el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
 struct nodoHeap *construirArbolHuffman(unsigned char dato[], int frecuencia[], int tam)
 {
   struct nodoHeap *izq, *der, *arbolito;
-  //genera un arbol con los caracteres del archivo a leer y su frecuencia
+  //Genera un arbol con los caracteres del archivo a leer y su frecuencia
   struct Heap *Heap = generarArbol(dato, frecuencia, tam);
-  //hasta que el arbol cuente con solo una raiz se extraeran los nodos en pares, tomando los dos de menor frecuencia en cada ocasion
+  //Hasta que el arbol cuente con solo una raiz se extraeran los nodos en pares, tomando los dos de menor frecuencia en cada ocasion
   while (!EsUnitario(Heap))
   {
     izq = extraerNodo(Heap);
     der = extraerNodo(Heap);
-    //se crean los arboles temporales
+    //Se crean los arboles temporales
     arbolito = crearNodo('#', izq->frecuencia + der->frecuencia);
-    //se asignan los nodos con caracteres a los arboles temporales
+    //Se asignan los nodos con caracteres a los arboles temporales
     arbolito->izq = izq;
     arbolito->der = der;
     //se inserta el nodo al arbol para ordenarlo nuevamente
@@ -22,9 +41,9 @@ struct nodoHeap *construirArbolHuffman(unsigned char dato[], int frecuencia[], i
   return extraerNodo(Heap);
 }
 
+/*Funcion para almecenar los codigos Huffman de los nodos*/
 void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* bits_huffman, long long int* tam_archivo)
-{
-  ///0 0 1 0 0 0 1 1
+{ 
   int i;
   //Si se trata de un hijo izquierdo, guarda un 0 en el arreglo
   if (raiz->izq)
@@ -41,12 +60,6 @@ void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* 
   //Si se trata de una hoja, imprime el caracter en el nodo
   if (EsHoja(raiz))
   {
-    /* printf("  %c   | ", raiz->dato);
-    //Impresion de tabla
-    for (i = 0; i < pos; ++i)
-      printf("%d", arr[i]);
-
-    printf("\n"); */
     bits_huffman[raiz->dato].bits = (int *)malloc(sizeof(int) * pos);
     for(int i = 0; i < pos; i++)
     {
@@ -55,9 +68,10 @@ void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* 
 
     bits_huffman[raiz->dato].tam = pos;
     *tam_archivo += raiz->frecuencia * pos;
-    // imprimirTabla(arr, arbol);
   }
 }
+
+/*Funcion para codificar y escribir la salida .dat. Recibe el nombre del archivo original, el tamaño y los codigos Huffman*/
 void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits)
 {
     FILE *archivo = fopen(nombre, "rb");
@@ -90,18 +104,6 @@ void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits
 
     if (k != 0)
         fwrite(&cadena_cerosunos, 1, sizeof(cadena_cerosunos), codi);
-    //fputc(cadena_cerosunos, codi);
-
-    //printf("\t%c-%s\n",c,codigos[c].cadena);
     fclose(codi);
     fclose(archivo);
 }
-/*void codigoHuffman(unsigned char dato[], int frecuencia[], int tam)
-{
-  struct nodoHeap *raiz = construirArbolHuffman(dato, frecuencia, tam);
-
-  int arr[TAMMAX], top = 0;
-
-  imprimirHuffcodigo(raiz, arr, top);
-}*/
-

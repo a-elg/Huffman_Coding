@@ -1,3 +1,19 @@
+/*****************************************************************
+(C)Noviembre 2021
+ 
+EQUIPO: Ponys Salvajes
+INTEGRANTES DEL EQUIPO: 
+    López Gracia Angel Emmanuel 
+    López Hernández Lissete 
+    Martínez Martínez Fernando 
+    Martínez Ortiz Fabiola Yahel	
+  VERSIÓN: 5.0
+DESCRIPCIÓN: Implementación de las funciones necesarias para crear la estructura de datos minHeap, con algunas operaciones basicas.
+
+CURSO: Análisis de algoritmos
+    COMPILACIÓN: "gcc [nombre_del_programa].c -o main” 
+    EJECUCIÓN: "./main n" (Linux y MAC OS)
+*****************************************************************/
 #include "huffman.h"
 #include "heaps.h"
 #include <stdio.h>
@@ -5,24 +21,26 @@
 #include <string.h>
 #include "tiempo.h"
 #define BYTE 7
+
+
 int main(int argc, char **argv){
+    //Variables para medición de tiempos
+	double utime0, stime0, wtime0,utime1, stime1, wtime1; 
 
     if(argc < 2){
     printf("Error en los argumentos\n");
     exit(0);
-  }
+    }
 
-    //Variables para medición de tiempos
-	double utime0, stime0, wtime0,utime1, stime1, wtime1; 
-
-    //**********************************************************************************
   //INICIAR EL CONTEO DEL TIEMPO PARA LAS EVALUACIONES DE RENDIMIENTO	
 	uswtime(&utime0, &stime0, &wtime0);
 
-    //No. nodos en el arbol, tamaño del archivo codificado
-   int elementos;
+    //Numero de nodos en el arbol y tamaño del archivo codificado
+    int elementos;
     long long int tamArchivo;
     int *byte;
+
+    //Se abre el archivo frecuencias.txt y se obtiene el tamaño del archivo
     FILE *frecuencias = fopen("frecuencias.txt", "rb");
     fscanf(frecuencias, "%d", &elementos);
     fscanf(frecuencias, "%lld", &tamArchivo);
@@ -30,21 +48,14 @@ int main(int argc, char **argv){
     unsigned char *caracteres = (unsigned char *)malloc(sizeof(unsigned char) * elementos); //Arreglo de caracteres repetidos
     int *recurrencias = (int *)malloc(sizeof(int) * elementos);                             //Arreglo con la cantidad de repeticiones
 
+    //Se leen los caracteres y su frecuencia correspondiente
     for (int i = 0; i < elementos; i++)
     {
         fscanf(frecuencias, "%d", &caracteres[i]);
         fscanf(frecuencias, "%d", &recurrencias[i]);
     }
-
     fclose(frecuencias);
-    //1110111101010000          a=111   b=011  c=110
-    //abc
-    //
-    // 1. Lee archivo de codificación fgetc||fread //11110000
-    // 2. funcion(arreglo archivo, posbyte, posbit, arbol, tamArchivo, tamActual)
-    //  2.1 if( caracter leido==1)
-    //    raiz->izq
-    //
+
     struct nodoHeap *raiz = construirArbolHuffman(caracteres, recurrencias, elementos);
 
     int arr[TAMMAX], top = 0;
@@ -55,32 +66,22 @@ int main(int argc, char **argv){
      long long int tam_archivo = 0;
 
     imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
-    // for (int i = 0; i < 256; i++)
-    // {
-    //     if (bits[i].tam != 0)
-    //     {
-    //         printf("%c - ", i);
-    //         for (int j = 0; j < bits[i].tam; j++)
-    //             printf("%d", bits[i].bits[j]);
-    //         printf(" - %d\n", bits[i].tam);
-    //     }
-    // }
 
+    //Se abre el archivo codificado en modo binario
     FILE *archivo = fopen("binario.dat", "rb");
     fseek(archivo, 0, SEEK_END);
-    //obtiene el tamanio del archivo
+    //Se obtiene el tamanio del archivo
     long long int tamano = ftell(archivo);
     //Se posiciona nuevamente en la primer posicion del archivo
     fseek(archivo, 0, SEEK_SET);
 
     unsigned char *bytes = (unsigned char *)malloc(tamano * sizeof(unsigned char));
 
+    //Se incializa el arreglo de bytes
     for (long long int i = 0; i < tamano; i++)
         bytes[i] = 0;
 
-    //fread(bytes, 1, tamano, archivo);
-
-   
+   //Se crea el archivo de salida decodificado en modo binario
     FILE *original = fopen(argv[1], "wb");
     struct nodoHeap *aux = raiz;
     fseek(archivo, 0, SEEK_SET);
@@ -126,6 +127,9 @@ int main(int argc, char **argv){
 	printf("sys (Tiempo en acciónes de E/S)  %.10e s\n",  stime1 - stime0);
 	printf("CPU/Wall   %.10f %% \n",100.0 * (utime1 - utime0 + stime1 - stime0) / (wtime1 - wtime0));
 	printf("\n");
+
+    printf("Tamño del archivo original: %lld bytes\n", tamArchivo);
+    printf("Tamaño del archivo codificado (.dat): %lld bytes\n", tamano);
 
     return 0;
 }

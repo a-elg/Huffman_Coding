@@ -7,25 +7,23 @@
 #include "huffman.h"
 #include "tiempo.h"
 
-int main(int argc, char **argv){
+int main(int argc, char **argv) {
+  // Variables para medición de tiempos
+  double utime0, stime0, wtime0, utime1, stime1, wtime1;
 
-//Variables para medición de tiempos
-	double utime0, stime0, wtime0,utime1, stime1, wtime1; 
-
-  if(argc < 2){
+  if (argc < 2) {
     printf("Error en los argumentos\n");
     exit(0);
   }
 
-//**********************************************************************************
-  //INICIAR EL CONTEO DEL TIEMPO PARA LAS EVALUACIONES DE RENDIMIENTO	
-	uswtime(&utime0, &stime0, &wtime0);
+  // INICIAR EL CONTEO DEL TIEMPO PARA LAS EVALUACIONES DE RENDIMIENTO
+  uswtime(&utime0, &stime0, &wtime0);
 
-
+  //Abre el archivo especificado en el argumento 1, en modo binario
   FILE *archivo = fopen(argv[1], "rb");
   //Busca la ultima posicion del archivo partiendo desde el inicio
   fseek(archivo, 0, SEEK_END);
-  //obtiene el tamanio del archivo
+  //Obtiene el tamanio del archivo
   long long int tamano = ftell(archivo);
   //Se posiciona nuevamente en la primer posicion del arreglo
   fseek(archivo, 0, SEEK_SET);
@@ -33,9 +31,9 @@ int main(int argc, char **argv){
   int frecuencia[256];
   //inicializa el array caracteres
   memset(frecuencia, 0, sizeof(int) * 256);
-  //obtiene los caracteres del archivo hasta encontrar el final
-  for (long long i = 0; i < tamano; i++)
-  {
+
+  // obtiene los caracteres del archivo hasta encontrar el final
+  for (long long i = 0; i < tamano; i++) {
     unsigned char aux = fgetc(archivo);
     frecuencia[aux]++;
   }
@@ -43,21 +41,19 @@ int main(int argc, char **argv){
   fclose(archivo);
 
   int elementos = 0; //Numero de elementos repetidos
-  for (int i = 0; i < 256; i++)
-  {
-    if (frecuencia[i] > 0)
-      elementos++;
+  for (int i = 0; i < 256; i++) {
+    if (frecuencia[i] > 0) elementos++;
   }
-  //creacion de arreglos para ingresar al arbol
+
+  //Creacion de arreglos para ingresar al arbol
   unsigned char *bytes = (unsigned char *)malloc(sizeof(unsigned char) * elementos); //Arreglo de caracteres repetidos
   int *recurrencias = (int *)malloc(sizeof(int) * elementos);                        //Arreglo con la cantidad de repeticiones
-  //asignacion de los valores a los arreglos
+  
+  //Asignacion de los valores a los arreglos
   int k = 0;
   int tamBytes = 0;
-  for (int i = 0; i < 256; i++)
-  {
-    if (frecuencia[i] > 0)
-    {
+  for (int i = 0; i < 256; i++) {
+    if (frecuencia[i] > 0) {
       tamBytes += frecuencia[i];
       bytes[k] = i;
       recurrencias[k] = frecuencia[i];
@@ -65,38 +61,7 @@ int main(int argc, char **argv){
     }
   }
 
-  // printf("\n\nCaracteres: \n\n");
-  // for (int i = 0; i < elementos; i++)
-  // {
-  //   printf("[%c]", bytes[i]);
-  // }
-
-  // printf("\n\nReps: \n\n");
-  // for (int i = 0; i < elementos; i++)
-  // {
-  //   printf("[%d]", recurrencias[i]);
-  // }
-
-  // printf("\n\nCaracter | codigo de Huffman ");
-  // printf("\n--------------------\n");
-
-  //codigoHuffman(arreglo_caracteres, frecuencia, tam);
-  //  struct nodoHeap *raiz = construirArbolHuffman(bytes, recurrencias, elementos);
-
-  ///////
-  char arreglo_caracteres[] = {'f', 'e', 'c', 'b', 'd', 'a'};
-  int freq[] = {5, 9, 12, 13, 16, 45};
-  //tamaño en memoria entre tamaño de cada celda para obtener el tamaño del arreglo
-  //int tam = sizeof(arreglo_caracteres) / sizeof(arreglo_caracteres[0]);
-  //int tam = sizeof(bytes) / sizeof(recurrencias[0]);
-  int tam = sizeof(bytes);
-
-  // printf(" Caracter | codigo de Huffman ");
-  // printf("\n--------------------\n");
-  // printf("%d\n", tam);
-  // printf("elementos %d\n", elementos);
-  //codigoHuffman(arreglo_caracteres, frecuencia, tam);
-
+  /*Se construye el el arbol, recibe como parametros el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
   struct nodoHeap *raiz = construirArbolHuffman(bytes, recurrencias, elementos);
 
   int arr[TAMMAX], top = 0;
@@ -106,28 +71,16 @@ int main(int argc, char **argv){
     bits[i].tam = 0;
   long long int tam_archivo = 0;
   imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
-  // for (int i = 0; i < 256; i++)
-  // {
-  //   if (bits[i].tam != 0)
-  //   {
-  //     //printf("%c - ", i);
-  //     for (int j = 0; j < bits[i].tam; j++)
-  //       printf("%d", bits[i].bits[j]);
-  //        printf(" - %d\n", bits[i].tam);
-  //   }
-  // }
-
-  //printf("%lld\n", tam_archivo);
+  
   codificador(argv[1], tam_archivo, bits);
-  //se crea el archivo frepeticiones que guarda el numero de repeticiones, se necesita para la decodificación
+
+  //se crea el archivo de frecuencias que se necesita para la decodificación
   FILE *frepeticiones = fopen("frecuencias.txt", "wb");
   fprintf(frepeticiones, "%d", elementos);
   fprintf(frepeticiones, " %d", tamBytes);
-  for (int i = 0; i < elementos; i++)
-  {
+  for (int i = 0; i < elementos; i++) {
     fprintf(frepeticiones, " %d %d", (int)bytes[i], recurrencias[i]);
   }
-
   fclose(frepeticiones);
 
   //EVALUAR LOS TIEMPOS DE EJECUCIÓN 
