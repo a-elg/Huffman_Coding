@@ -56,6 +56,7 @@ int main(int argc, char **argv){
     }
     fclose(frecuencias);
 
+    /*Se construye el el arbol, recibe como parametros el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
     struct nodoHeap *raiz = construirArbolHuffman(caracteres, recurrencias, elementos);
 
     int arr[TAMMAX], top = 0;

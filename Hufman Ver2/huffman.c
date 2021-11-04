@@ -21,12 +21,14 @@ CURSO: Análisis de algoritmos
 /*Funcion para crear el arbol. Recibe como parametros el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
 struct nodoHeap *construirArbolHuffman(unsigned char dato[], int frecuencia[], int tam)
 {
+  //Crear variables para generar nodos a insertar en el arbol
   struct nodoHeap *izq, *der, *arbolito;
-  //Genera un arbol con los caracteres del archivo a leer y su frecuencia
+  //Genera un arbol con los caracteres del archivo a leer y su frecuencia (definido en heap.c)
   struct Heap *Heap = generarArbol(dato, frecuencia, tam);
   //Hasta que el arbol cuente con solo una raiz se extraeran los nodos en pares, tomando los dos de menor frecuencia en cada ocasion
   while (!EsUnitario(Heap))
   {
+    //Se extraen los dos nodos de menor frecuencia
     izq = extraerNodo(Heap);
     der = extraerNodo(Heap);
     //Se crean los arboles temporales
@@ -63,7 +65,7 @@ void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* 
     bits_huffman[raiz->dato].bits = (int *)malloc(sizeof(int) * pos);
     for(int i = 0; i < pos; i++)
     {
-      bits_huffman[raiz->dato].bits[i] = arr[i];
+      bits_huffman[raiz->dato].bits[i] = arr[i];//
     }
 
     bits_huffman[raiz->dato].tam = pos;
@@ -71,7 +73,10 @@ void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* 
   }
 }
 
-/*Funcion para codificar y escribir la salida .dat. Recibe el nombre del archivo original, el tamaño y los codigos Huffman*/
+/*
+  Funcion para codificar y escribir la salida .dat. Recibe el nombre del archivo original, el tamaño y los codigos Huffman
+  La función se encarga de ensambar bit a bit un byte para luego plasmarlo en el archivo .dat
+*/
 void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits)
 {
     FILE *archivo = fopen(nombre, "rb");
@@ -83,19 +88,19 @@ void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits
 
     for (int l = 0; l < tamano_archivo; l++)
     {
-        c = fgetc(archivo);
+        c = fgetc(archivo);//Se lee el archivo
 
         for (i = 0; i < bits[c].tam; i++, k++)
         {
 
             if (bits[c].bits[i] == 1)
             {
-                PONE_1(cadena_cerosunos, 7 - k);
+                PONE_1(cadena_cerosunos, 7 - k);//Se pone un 1 en la posicion correspondiente
             }
             if (k == 7)
             {
                 k = -1;
-                fwrite(&cadena_cerosunos, 1, sizeof(cadena_cerosunos), codi);
+                fwrite(&cadena_cerosunos, 1, sizeof(cadena_cerosunos), codi);//Se escribe el byte en el archivo
                 //fputc(cadena_cerosunos, codi);
                 cadena_cerosunos = 0;
             }
@@ -103,7 +108,7 @@ void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits
     }
 
     if (k != 0)
-        fwrite(&cadena_cerosunos, 1, sizeof(cadena_cerosunos), codi);
-    fclose(codi);
-    fclose(archivo);
+        fwrite(&cadena_cerosunos, 1, sizeof(cadena_cerosunos), codi);//Se escribe el ultimo byte en el archivo
+    fclose(codi);//Se cierra el archivo de codificacion
+    fclose(archivo);//Se cierra el archivo de salida
 }

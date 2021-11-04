@@ -25,10 +25,10 @@ CURSO: Análisis de algoritmos
 #include "heaps.h"
 
 /*Prototipos*/
-/*Prototipo de la funcion para crear el arbol, recibe el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
+/*Prototipo de la función para crear el arbol, recibe el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
 struct nodoHeap *construirArbolHuffman(unsigned char dato[], int frecuencia[], int tam);
 
-/**/
+/*Prototipo de la función que */
 void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* bits_huffman,long long int* tam_archivo);
 
 /*Prototipo para la función que codifica y escribir la salida .dat. Recibe el nombre del archivo original, el tamaño y los codigos Huffman*/
