@@ -43,7 +43,8 @@ struct nodoHeap *construirArbolHuffman(unsigned char dato[], int frecuencia[], i
   return extraerNodo(Heap);
 }
 
-/*Funcion para almecenar los codigos Huffman de los nodos*/
+/*Funcion para almecenar los codigos Huffman de los nodos, recibe como parámetros los bits del archivo, el arbol y el tamaño del archivo
+ */
 void imprimirHuffcodigo(struct nodoHeap *raiz, int arr[], int pos,Bits_Huffman* bits_huffman, long long int* tam_archivo)
 { 
   int i;

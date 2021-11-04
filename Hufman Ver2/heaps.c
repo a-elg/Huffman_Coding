@@ -96,10 +96,13 @@ void ordenaDesc(struct Heap *Heap, int posNodo)
 /*Función que se encarga de extraer el nodo con menor frecuencia del arbol (la raíz), y lo retorna*/
 struct nodoHeap *extraerNodo(struct Heap *Heap)
 {
+  //se crea un nodo temporal para almacenar el nodo con menor frecuencia
   struct nodoHeap *temp = Heap->nodo[0];
+  //se intercambia el nodo con el ultimo nodo del arbol
   Heap->nodo[0] = Heap->nodo[Heap->tam - 1];
-
+  //se decrementa el tamaño del arbol
   --Heap->tam;
+  //se re-ordena el arbol después de la extracción
   ordenaDesc(Heap, 0);
 
   return temp;
@@ -134,9 +137,9 @@ void insertarNodo(struct Heap *arbol, struct nodoHeap *nodo)
 */
 void ordenarArbol(struct Heap *Heap)
 {
+  //Se recorre el arbol desde el ultimo nodo hasta el primero
   int n = Heap->tam - 1;
   int i;
-
   for (i = (n - 1) / 2; i >= 0; --i)
     ordenaDesc(Heap, i);
 }
@@ -148,14 +151,16 @@ void ordenarArbol(struct Heap *Heap)
 */
 struct Heap *generarArbol(unsigned char dato[], int frecuencia[], long long int tam)
 {
+  //Se crea un arbol vacio y luego se llena con los datos recibidos por parametro
   struct Heap *arbol = (struct Heap *)malloc(sizeof(struct Heap));
   arbol->tam = 0;
   arbol->tamMax = tam;
   arbol->nodo = (struct nodoHeap **)malloc(arbol->tamMax * sizeof(struct nodoHeap *));
+  //Se empieza a llenar el arbol con los datos recibidos por parametro
   for (int i = 0; i < tam; ++i)
     arbol->nodo[i] = crearNodo(dato[i], frecuencia[i]);
-
   arbol->tam = tam;
+  //Se ordena el árbol
   ordenarArbol(arbol);
 
   return arbol;

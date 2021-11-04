@@ -23,13 +23,15 @@ int main(int argc, char **argv) {
   FILE *archivo = fopen(argv[1], "rb");
   //Busca la ultima posicion del archivo partiendo desde el inicio
   fseek(archivo, 0, SEEK_END);
-  //Obtiene el tamanio del archivo
+  //Obtiene el tamaño del archivo
   long long int tamano = ftell(archivo);
-  //Se posiciona nuevamente en la primer posicion del arreglo
+  /*Se posiciona nuevamente en la primer posicion del arreglo (buscar el tamaño del arreglo
+   con fseek deja el puntero en la ultima posicion del archivo)
+  */
   fseek(archivo, 0, SEEK_SET);
 
   int frecuencia[256];
-  //inicializa el array caracteres
+  //inicializa el array caracteres (con todas las combinaciones de caracteres posibles) en blanco
   memset(frecuencia, 0, sizeof(int) * 256);
 
   // obtiene los caracteres del archivo hasta encontrar el final
@@ -61,15 +63,17 @@ int main(int argc, char **argv) {
     }
   }
 
-  /*Se construye el el arbol, recibe como parametros el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
+  /*Se construye el arbol, recibe como parametros el arreglo de caracteres, sus repeticiones y la cantidad. Devuelve el apuntador al arbol*/
   struct nodoHeap *raiz = construirArbolHuffman(bytes, recurrencias, elementos);
 
   int arr[TAMMAX], top = 0;
 
-  Bits_Huffman bits[256];
+  Bits_Huffman bits[256];//estructura definida en heap.h
   for (int i = 0; i < 256; i++)
     bits[i].tam = 0;
   long long int tam_archivo = 0;
+  
+  /*Funcion para almecenar los codigos Huffman de los nodos, recibe como parámetros los bits del archivo, el arbol y el tamaño del archivo*/
   imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
   
   codificador(argv[1], tam_archivo, bits);

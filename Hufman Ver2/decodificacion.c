@@ -89,6 +89,7 @@ int main(int argc, char **argv){
 
     long long int tamActual = 0;
 
+    //Se recorre el archivo codificado recorriendo el árbol
     while (tamArchivo != tamActual)
     {
         unsigned char byte = fgetc(archivo);
