@@ -7,21 +7,22 @@
 #include "huffman.h"
 #include "tiempo.h"
 
-int main()
-{
+int main(int argc, char **argv){
+
 //Variables para medición de tiempos
 	double utime0, stime0, wtime0,utime1, stime1, wtime1; 
 
-  char nombreArchivo[100];
-    printf("Ingrese el nombre del archivo de entrada:\n");
-    scanf("%s",nombreArchivo);
+  if(argc < 2){
+    printf("Error en los argumentos\n");
+    exit(0);
+  }
 
 //**********************************************************************************
   //INICIAR EL CONTEO DEL TIEMPO PARA LAS EVALUACIONES DE RENDIMIENTO	
 	uswtime(&utime0, &stime0, &wtime0);
 
 
-  FILE *archivo = fopen(nombreArchivo, "rb");
+  FILE *archivo = fopen(argv[1], "rb");
   //Busca la ultima posicion del archivo partiendo desde el inicio
   fseek(archivo, 0, SEEK_END);
   //obtiene el tamanio del archivo
@@ -64,20 +65,20 @@ int main()
     }
   }
 
-  printf("\n\nCaracteres: \n\n");
-  for (int i = 0; i < elementos; i++)
-  {
-    printf("[%c]", bytes[i]);
-  }
+  // printf("\n\nCaracteres: \n\n");
+  // for (int i = 0; i < elementos; i++)
+  // {
+  //   printf("[%c]", bytes[i]);
+  // }
 
-  printf("\n\nReps: \n\n");
-  for (int i = 0; i < elementos; i++)
-  {
-    printf("[%d]", recurrencias[i]);
-  }
+  // printf("\n\nReps: \n\n");
+  // for (int i = 0; i < elementos; i++)
+  // {
+  //   printf("[%d]", recurrencias[i]);
+  // }
 
-  printf("\n\nCaracter | codigo de Huffman ");
-  printf("\n--------------------\n");
+  // printf("\n\nCaracter | codigo de Huffman ");
+  // printf("\n--------------------\n");
 
   //codigoHuffman(arreglo_caracteres, frecuencia, tam);
   //  struct nodoHeap *raiz = construirArbolHuffman(bytes, recurrencias, elementos);
@@ -90,10 +91,10 @@ int main()
   //int tam = sizeof(bytes) / sizeof(recurrencias[0]);
   int tam = sizeof(bytes);
 
-  printf(" Caracter | codigo de Huffman ");
-  printf("\n--------------------\n");
-  printf("%d\n", tam);
-  printf("elementos %d\n", elementos);
+  // printf(" Caracter | codigo de Huffman ");
+  // printf("\n--------------------\n");
+  // printf("%d\n", tam);
+  // printf("elementos %d\n", elementos);
   //codigoHuffman(arreglo_caracteres, frecuencia, tam);
 
   struct nodoHeap *raiz = construirArbolHuffman(bytes, recurrencias, elementos);
@@ -105,19 +106,19 @@ int main()
     bits[i].tam = 0;
   long long int tam_archivo = 0;
   imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
-  for (int i = 0; i < 256; i++)
-  {
-    if (bits[i].tam != 0)
-    {
-      printf("%c - ", i);
-      for (int j = 0; j < bits[i].tam; j++)
-        printf("%d", bits[i].bits[j]);
-      printf(" - %d\n", bits[i].tam);
-    }
-  }
+  // for (int i = 0; i < 256; i++)
+  // {
+  //   if (bits[i].tam != 0)
+  //   {
+  //     //printf("%c - ", i);
+  //     for (int j = 0; j < bits[i].tam; j++)
+  //       printf("%d", bits[i].bits[j]);
+  //        printf(" - %d\n", bits[i].tam);
+  //   }
+  // }
 
-  printf("%lld\n", tam_archivo);
-  codificador(nombreArchivo, tam_archivo, bits);
+  //printf("%lld\n", tam_archivo);
+  codificador(argv[1], tam_archivo, bits);
   //se crea el archivo frepeticiones que guarda el numero de repeticiones, se necesita para la decodificación
   FILE *frepeticiones = fopen("frecuencias.txt", "wb");
   fprintf(frepeticiones, "%d", elementos);

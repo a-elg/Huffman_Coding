@@ -5,15 +5,15 @@
 #include <string.h>
 #include "tiempo.h"
 #define BYTE 7
-int main()
-{
+int main(int argc, char **argv){
+
+    if(argc < 2){
+    printf("Error en los argumentos\n");
+    exit(0);
+  }
 
     //Variables para medición de tiempos
 	double utime0, stime0, wtime0,utime1, stime1, wtime1; 
-
-    char nombreArchivo[100];
-    printf("Ingrese el nombre del archivo de salida:\n");
-    scanf("%s", nombreArchivo);
 
     //**********************************************************************************
   //INICIAR EL CONTEO DEL TIEMPO PARA LAS EVALUACIONES DE RENDIMIENTO	
@@ -55,16 +55,16 @@ int main()
      long long int tam_archivo = 0;
 
     imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
-    for (int i = 0; i < 256; i++)
-    {
-        if (bits[i].tam != 0)
-        {
-            printf("%c - ", i);
-            for (int j = 0; j < bits[i].tam; j++)
-                printf("%d", bits[i].bits[j]);
-            printf(" - %d\n", bits[i].tam);
-        }
-    }
+    // for (int i = 0; i < 256; i++)
+    // {
+    //     if (bits[i].tam != 0)
+    //     {
+    //         printf("%c - ", i);
+    //         for (int j = 0; j < bits[i].tam; j++)
+    //             printf("%d", bits[i].bits[j]);
+    //         printf(" - %d\n", bits[i].tam);
+    //     }
+    // }
 
     FILE *archivo = fopen("binario.dat", "rb");
     fseek(archivo, 0, SEEK_END);
@@ -81,7 +81,7 @@ int main()
     //fread(bytes, 1, tamano, archivo);
 
    
-    FILE *original = fopen(nombreArchivo, "wb");
+    FILE *original = fopen(argv[1], "wb");
     struct nodoHeap *aux = raiz;
     fseek(archivo, 0, SEEK_SET);
 
