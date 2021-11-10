@@ -94,18 +94,22 @@ int main(int argc, char **argv){
 
         unsigned char byte = fgetc(archivo);
         int i = BYTE;
-        while (i>=0){
+        while (i>=0 && tamActual < tamArchivo ){
             if (!CONSULTARBIT(byte, i)) 
                         aux = aux->izq;
-            else if (CONSULTARBIT(byte, i)) 
+            else 
+                if (CONSULTARBIT(byte, i)) 
                         aux = aux->der;
             if (EsHoja(aux)){
                 fputc(aux->dato,original);
                 aux = raiz;
                 tamActual++;
+                //printf("tamActual: %lld -- TamArchivo %lld \n", tamActual,tamArchivo );
             }
             --i;
+           
         }
+         
     }
 
     fclose(archivo);

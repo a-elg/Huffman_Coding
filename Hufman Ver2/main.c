@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
   /*Funcion para almecenar los codigos Huffman de los nodos, recibe como parámetros los bits del archivo, el arbol y el tamaño del archivo*/
   imprimirHuffcodigo(raiz, arr, top, bits, &tam_archivo);
   
-  codificador(argv[1], tam_archivo, bits);
+  codificador(argv[1], tamano, bits);
 
   //se crea el archivo de frecuencias que se necesita para la decodificación
   FILE *frepeticiones = fopen("frecuencias.txt", "wb");
