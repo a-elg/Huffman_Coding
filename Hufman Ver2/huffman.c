@@ -87,8 +87,7 @@ void codificador(char nombre[], long long int tamano_archivo, Bits_Huffman* bits
     int k = 0;
     unsigned char cadena_cerosunos = 0; //00000000
 
-    for (int l = 0; l < tamano_archivo; l++)
-    {
+    for (long long int l = 0; l < tamano_archivo; l++){
         c = fgetc(archivo);//Se lee el archivo
 
         for (i = 0; i < bits[c].tam; i++, k++)

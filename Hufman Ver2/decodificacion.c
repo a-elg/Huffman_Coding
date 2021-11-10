@@ -90,16 +90,16 @@ int main(int argc, char **argv){
     long long int tamActual = 0;
 
     //Se recorre el archivo codificado recorriendo el árbol
-    while (tamArchivo != tamActual)
-    {
+    while (tamActual < tamArchivo){
+
         unsigned char byte = fgetc(archivo);
         int i = BYTE;
-        while (i>=0)
-        {
-            if (!CONSULTARBIT(byte, i)) aux = aux->izq;
-            else if (CONSULTARBIT(byte, i)) aux = aux->der;
-            if (EsHoja(aux))
-            {
+        while (i>=0){
+            if (!CONSULTARBIT(byte, i)) 
+                        aux = aux->izq;
+            else if (CONSULTARBIT(byte, i)) 
+                        aux = aux->der;
+            if (EsHoja(aux)){
                 fputc(aux->dato,original);
                 aux = raiz;
                 tamActual++;
